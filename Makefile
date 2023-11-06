@@ -11,12 +11,8 @@
 
 SHELL := /usr/bin/env bash
 
-SUBMODULES := aw-core aw-client aw-qt aw-server aw-server-rust aw-watcher-afk aw-watcher-window
+SUBMODULES := aw-core aw-client aw-qt aw-server aw-watcher-afk aw-watcher-window
 
-# Exclude aw-server-rust if SKIP_SERVER_RUST is true
-ifeq ($(SKIP_SERVER_RUST),true)
-	SUBMODULES := $(filter-out aw-server-rust,$(SUBMODULES))
-endif
 # Include extras if AW_EXTRAS is true
 ifeq ($(AW_EXTRAS),true)
 	SUBMODULES := $(SUBMODULES) aw-notify aw-watcher-input
@@ -49,12 +45,6 @@ build:
 #	needed due to https://github.com/pypa/setuptools/issues/1963
 #	would ordinarily be specified in pyproject.toml, but is not respected due to https://github.com/pypa/setuptools/issues/1963
 	pip install 'setuptools>49.1.1'
-	@if (which cargo); then \
-		echo 'Rust found!'; \
-	else \
-		echo 'ERROR: Rust not found, try running with SKIP_SERVER_RUST=true'; \
-		exit 1; \
-	fi
 	for module in $(SUBMODULES); do \
 		echo "Building $$module"; \
 		make --directory=$$module build SKIP_WEBUI=$(SKIP_WEBUI); \
@@ -123,10 +113,6 @@ test-integration:
 	# aw-server-python
 	@echo "== Integration testing aw-server =="
 	@pytest ./scripts/tests/integration_tests.py ./aw-server/tests/ -v
-	# aw-server-rust
-	@echo "== Integration testing aw-server-rust =="
-	@export PATH=aw-server-rust/target/release:aw-server-rust/target/debug:${PATH}; \
-		 pytest ./scripts/tests/integration_tests.py ./aw-server/tests/ -v
 
 ICON := "aw-qt/media/logo/logo.png"
 
@@ -191,6 +177,5 @@ clean_all: clean
 	done
 
 clean-auto:
-	rm -rIv **/aw-server-rust/target
 	rm -rIv **/aw-android/mobile/build
 	rm -rIfv **/node_modules

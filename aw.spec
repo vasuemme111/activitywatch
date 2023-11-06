@@ -27,8 +27,6 @@ aw_core_path = Path(os.path.dirname(aw_core.__file__))
 restx_path = Path(os.path.dirname(flask_restx.__file__))
 
 aws_location = Path("aw-server")
-aw_server_rust_location = Path("aw-server-rust")
-aw_server_rust_bin = aw_server_rust_location / "target/package/aw-server-rust"
 aw_qt_location = Path("aw-qt")
 awa_location = Path("aw-watcher-afk")
 aww_location = Path("aw-watcher-window")
@@ -48,11 +46,6 @@ if platform.system() == "Windows":
 
     pyqt_path = os.path.dirname(PyQt5.__file__)
     extra_pathex.append(pyqt_path + "\\Qt\\bin")
-
-skip_rust = False
-if not aw_server_rust_bin.exists():
-    skip_rust = True
-    print("Skipping Rust build because aw-server-rust binary not found.")
 
 aw_server_a = Analysis(
     ["aw-server/__main__.py"],
@@ -76,7 +69,7 @@ aw_server_a = Analysis(
 aw_qt_a = Analysis(
     [aw_qt_location / "aw_qt/__main__.py"],
     pathex=[] + extra_pathex,
-    binaries=[(aw_server_rust_bin, ".")] if not skip_rust else [],
+    binaries=None,
     datas=[
         (aw_qt_location / "resources/aw-qt.desktop", "aw_qt/resources"),
         (aw_qt_location / "media", "aw_qt/media"),
