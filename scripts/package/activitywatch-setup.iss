@@ -12,21 +12,16 @@
 #pragma verboselevel 9
 
 [Setup]
-; NOTE: The value of AppId uniquely identifies this application. Do not use the same AppId value in installers for other applications.
-; (To generate a new GUID, click Tools | Generate GUID inside the IDE.)
-; TODO: Should probably remove the extra leading {, but don't want to risk changing the AppId...
 AppId={{F226B8F4-3244-46E6-901D-0CE8035423E4}
 AppName={#MyAppName}
 AppVersion={#MyAppVersion}
-;AppVerName={#MyAppName} {#MyAppVersion}
 AppPublisher={#MyAppPublisher}
 AppPublisherURL={#MyAppURL}
 AppSupportURL="https://github.com/ActivityWatch/activitywatch/issues"
 AppUpdatesURL="https://github.com/ActivityWatch/activitywatch/releases"
 DefaultDirName={autopf}\{#MyAppName}
 DisableProgramGroupPage=yes
-; Uncomment the following line to run in non administrative install mode (install for current user only.)
-PrivilegesRequired=lowest
+PrivilegesRequired=admin
 PrivilegesRequiredOverridesAllowed=dialog
 OutputDir={#DistDir}
 OutputBaseFilename=activitywatch-setup
@@ -36,28 +31,23 @@ UninstallDisplayIcon={app}\{#MyAppExeName}
 Compression=lzma
 SolidCompression=yes
 WizardStyle=modern
+ChangesEnvironment=yes
 
 [Languages]
 Name: "english"; MessagesFile: "compiler:Default.isl"
 
 [Tasks]
 Name: "desktopicon"; Description: "{cm:CreateDesktopIcon}"; GroupDescription: "{cm:AdditionalIcons}"; Flags: unchecked
-Name: "StartMenuEntry" ; Description: "Start ActivityWatch when Windows starts"; GroupDescription: "Windows Startup"; MinVersion: 4,4;
+Name: "StartMenuEntry"; Description: "Start ActivityWatch when Windows starts"; GroupDescription: "Windows Startup"; MinVersion: 4,4;
 
 [Files]
 Source: "{#DistDir}\activitywatch\aw-qt.exe"; DestDir: "{app}"; Flags: ignoreversion
 Source: "{#DistDir}\activitywatch\*"; DestDir: "{app}"; Flags: ignoreversion recursesubdirs createallsubdirs
-; NOTE: Don't use "Flags: ignoreversion" on any shared system files
 
 [Icons]
 Name: "{autoprograms}\{#MyAppName}"; Filename: "{app}\{#MyAppExeName}"
 Name: "{autodesktop}\{#MyAppName}"; Filename: "{app}\{#MyAppExeName}"; Tasks: desktopicon
 Name: "{userstartup}\{#MyAppName}"; Filename: "{app}\{#MyAppExeName}"; Tasks: StartMenuEntry;
 
-[Run]
-Filename: "{app}\{#MyAppExeName}"; Description: "{cm:LaunchProgram,{#StringChange(MyAppName, '&', '&&')}}"; Flags: nowait postinstall skipifsilent
-
-; Removes the previously installed version before installing the new one
-; NOTE: Doesn't work? And also discouraged by the docs
-;[InstallDelete]
-;Type: filesandordirs; Name: "{app}\"
+[Registry]
+Root: HKLM; Subkey: "SYSTEM\CurrentControlSet\Control\Session Manager\Environment"; ValueType:string; ValueName:"activitywatch"; ValueData:"{app}"; Flags: preservestringtype
