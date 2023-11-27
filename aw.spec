@@ -73,8 +73,8 @@ aw_qt_a = Analysis(
     datas=[
         (aw_qt_location / "resources/aw-qt.desktop", "aw_qt/resources"),
         (aw_qt_location / "media", "aw_qt/media"),
-        ("libcrypto.3.dylib", '.'),
-        ("libsqlcipher.0.dylib", '.'),
+        (os.path.join(spec_dir, "libcrypto-1_1-x64.dll"), '.')
+        (os.path.join(spec_dir, "sqlcipher.dll"), '.')
     ],
     hiddenimports=[],
     hookspath=[],
