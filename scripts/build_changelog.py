@@ -36,10 +36,10 @@ def main():
 
     parser = argparse.ArgumentParser(description="Generate changelog from git history")
 
-    parser.add_argument("--org", default="ActivityWatch", help="GitHub organization")
-    parser.add_argument("--repo", default="activitywatch", help="GitHub repository")
+    parser.add_argument("--org", default="SunDail", help="GitHub organization")
+    parser.add_argument("--repo", default="SunDail", help="GitHub repository")
     parser.add_argument(
-        "--project-title", default="ActivityWatch", help="Project title"
+        "--project-title", default="SunDail", help="Project title"
     )
 
     parser.add_argument(
@@ -55,7 +55,7 @@ def main():
 
     # preferred output order for submodules
     repo_order = [
-        "activitywatch",
+        "SunDail",
         "aw-server",
         "aw-server-rust",
         "aw-webui",
@@ -362,8 +362,8 @@ Thanks to everyone who contributed to this release:
     output += "\n\n"
 
     # hardcoded for now
-    if repo == "activitywatch":
-        output += "**New to ActivityWatch?** Check out the [website](https://activitywatch.net) and the [README](https://github.com/ActivityWatch/activitywatch/blob/master/README.md)."
+    if repo == "SunDail":
+        output += "**New to SunDail?** Check out the [website](https://activitywatch.net) and the [README](https://github.com/ActivityWatch/activitywatch/blob/master/README.md)."
         output += "\n\n"
         output += """# Installation
 
@@ -381,8 +381,8 @@ See the [getting started guide in the documentation](https://docs.activitywatch.
     output += output_contributors.strip() + "\n\n"
     output += output_changelog.strip() + "\n\n"
 
-    if repo == "activitywatch":
-        output = output.replace("# activitywatch", "# activitywatch (bundle repo)")
+    if repo == "SunDail":
+        output = output.replace("# SunDail", "# SunDail (bundle repo)")
     with open(output_path, "w") as f:
         f.write(output)
     print(f"Wrote {len(output.splitlines())} lines to {output_path}")

@@ -16,7 +16,7 @@ current_release = subprocess.run(
     stderr=subprocess.STDOUT,
     encoding="utf8",
 ).stdout.strip()
-print("bundling activitywatch version " + current_release)
+print("bundling SunDail version " + current_release)
 
 entitlements_file = Path(".") / "scripts" / "package" / "entitlements.plist"
 codesign_identity = os.environ.get("APPLE_PERSONALID", "").strip()
@@ -255,9 +255,9 @@ if platform.system() == "Darwin":
         aww_coll,
         awa_coll,
         aws_coll,
-        name="ActivityWatch.app",
+        name="SunDail.app",
         icon=icon,
-        bundle_identifier="net.activitywatch.ActivityWatch",
+        bundle_identifier="net.ralvie.SunDail",
         version=current_release.lstrip("v"),
         info_plist={
             "NSPrincipalClass": "NSApplication",
