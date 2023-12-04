@@ -65,17 +65,31 @@ aw_server_a = Analysis(
     win_private_assemblies=False,
     cipher=block_cipher,
 )
+dependent_datas = []
+
+if platform.system() == "Windows":
+    dependent_datas = [
+        (os.path.join(spec_dir, "libcrypto-1_1-x64.dll"), '.'),
+        (os.path.join(spec_dir, "sqlcipher.dll"), '.'),
+    ]
+elif platform.system() == "Darwin":
+    dependent_datas = [
+        ("libcrypto.3.dylib", '.'),
+        ("libsqlcipher.0.dylib", '.'),
+    ]
+
+datas = [
+    (aw_qt_location / "resources/aw-qt.desktop", "aw_qt/resources"),
+    (aw_qt_location / "media", "aw_qt/media"),
+]
+
+datas += dependent_datas  # Combine datas and dependent_datas
 
 aw_qt_a = Analysis(
     [aw_qt_location / "aw_qt/__main__.py"],
     pathex=[] + extra_pathex,
     binaries=None,
-    datas=[
-        (aw_qt_location / "resources/aw-qt.desktop", "aw_qt/resources"),
-        (aw_qt_location / "media", "aw_qt/media"),
-        (os.path.join(spec_dir, "libcrypto-1_1-x64.dll"), '.')
-        (os.path.join(spec_dir, "sqlcipher.dll"), '.')
-    ],
+    datas=datas,
     hiddenimports=[],
     hookspath=[],
     runtime_hooks=[],
