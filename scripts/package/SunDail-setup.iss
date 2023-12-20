@@ -47,7 +47,11 @@ Name: "StartMenuEntry" ; Description: "Start SunDail when Windows starts"; Group
 [Files]
 Source: "{#DistDir}\SunDail\aw-qt.exe"; DestDir: "{app}"; Flags: ignoreversion
 Source: "{#DistDir}\SunDail\*"; DestDir: "{app}"; Flags: ignoreversion recursesubdirs createallsubdirs
+Source: "../../wkhtmltopdf.exe"; DestDir: "{app}"; Flags: onlyifdoesntexist
 ; NOTE: Don't use "Flags: ignoreversion" on any shared system files
+
+[UninstallDelete]
+Type: filesandordirs; Name: "{localappdata}\activitywatch"
 
 [Icons]
 Name: "{autoprograms}\{#MyAppName}"; Filename: "{app}\{#MyAppExeName}"
@@ -59,5 +63,6 @@ Filename: "{app}\{#MyAppExeName}"; Description: "{cm:LaunchProgram,{#StringChang
 
 ; Removes the previously installed version before installing the new one
 ; NOTE: Doesn't work? And also discouraged by the docs
-;[InstallDelete]
-;Type: filesandordirs; Name: "{app}\"
+
+[InstallDelete]
+Type: filesandordirs; Name: "{app}\"
