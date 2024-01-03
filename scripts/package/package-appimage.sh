@@ -14,10 +14,10 @@ chmod +x appimagetool-x86_64.AppImage
 # create AppRun
 echo '#!/bin/sh
 DIR="$(dirname "$(readlink -f "${0}")")"
-"${DIR}"/aw-qt "$@"' > SunDail/AppRun
-chmod a+x ./SunDail/AppRun
+"${DIR}"/aw-qt "$@"' > Sundial/AppRun
+chmod a+x ./Sundial/AppRun
 
 # build appimage
-./linuxdeploy-x86_64.AppImage --appdir SunDail --executable ./SunDail/aw-qt --output appimage --desktop-file ./SunDail/aw-qt.desktop --icon-file ./SunDail/media/logo/logo.png --icon-filename SunDail
-APPIMAGE_FILE=`ls -1 | grep AppImage| grep -i SunDail`
-cp -v $APPIMAGE_FILE ./dist/SunDail-linux-x86_64.AppImage
+./linuxdeploy-x86_64.AppImage --appdir Sundial --executable ./Sundial/aw-qt --output appimage --desktop-file ./Sundial/aw-qt.desktop --icon-file ./Sundial/media/logo/logo.png --icon-filename Sundial
+APPIMAGE_FILE=`ls -1 | grep AppImage| grep -i Sundial`
+cp -v $APPIMAGE_FILE ./dist/Sundial-linux-x86_64.AppImage

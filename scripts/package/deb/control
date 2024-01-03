@@ -1,4 +1,4 @@
-Package: SunDail
+Package: Sundial
 Architecture: amd64
 Maintainer: Erik Bjäreholt <erik@bjareho.lt>
 Depends:

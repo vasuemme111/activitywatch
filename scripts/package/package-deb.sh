@@ -10,7 +10,7 @@ VERSION=$(scripts/package/getversion.sh)
 # Slice off the "v" from the tag, which is probably guaranteed
 VERSION_NUM=${VERSION:1}
 echo $VERSION_NUM
-PKGDIR="SunDail$VERSION_NUM"
+PKGDIR="Sundial$VERSION_NUM"
 
 # Package tools
 sudo apt-get install sed jdupes wget
@@ -37,7 +37,7 @@ sed -i "s/SCRIPT_VERSION_HERE/${VERSION_NUM}/" $PKGDIR/DEBIAN/control
 cat $PKGDIR/DEBIAN/control
 # The entire opt directory (should) consist of dist/activitywatch/*
 
-cp -r dist/SunDail/ $PKGDIR/opt/
+cp -r dist/Sundial/ $PKGDIR/opt/
 
 # Hard link duplicated libraries
 # (I have no idea what this is for)
@@ -46,9 +46,9 @@ jdupes -L -r -S -Xsize-:1K $PKGDIR/opt/
 sudo chown -R root:root $PKGDIR
 
 # Prepare the .desktop file
-sudo sed -i 's!Exec=aw-qt!Exec=/opt/SunDail/aw-qt!' $PKGDIR/opt/SunDail/aw-qt.desktop
-sudo cp $PKGDIR/opt/SunDail/aw-qt.desktop $PKGDIR/etc/xdg/autostart/
-sudo cp $PKGDIR/opt/SunDail/aw-qt.desktop $PKGDIR/usr/share/applications/
+sudo sed -i 's!Exec=aw-qt!Exec=/opt/Sundial/aw-qt!' $PKGDIR/opt/Sundial/aw-qt.desktop
+sudo cp $PKGDIR/opt/Sundial/aw-qt.desktop $PKGDIR/etc/xdg/autostart/
+sudo cp $PKGDIR/opt/Sundial/aw-qt.desktop $PKGDIR/usr/share/applications/
 
 dpkg-deb --build $PKGDIR
-sudo mv SunDail${VERSION_NUM}.deb dist/SunDail-${VERSION}-linux-x86_64.deb
+sudo mv Sundial${VERSION_NUM}.deb dist/Sundial-${VERSION}-linux-x86_64.deb

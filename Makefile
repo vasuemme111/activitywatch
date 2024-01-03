@@ -132,38 +132,38 @@ aw-qt/media/logo/logo.icns:
 	rm -R build/MyIcon.iconset
 	mv build/MyIcon.icns aw-qt/media/logo/logo.icns
 
-dist/SunDail.app: aw-qt/media/logo/logo.icns
+dist/Sundial.app: aw-qt/media/logo/logo.icns
 	pyinstaller --clean --noconfirm aw.spec
 
-dist/SunDail.dmg: dist/SunDail.app
+dist/Sundial.dmg: dist/Sundial.app
 	# NOTE: This does not codesign the dmg, that is done in the CI config
 	pip install dmgbuild
-	dmgbuild -s scripts/package/dmgbuild-settings.py -D app=dist/SunDail.app "SunDail" dist/SunDail.dmg
+	dmgbuild -s scripts/package/dmgbuild-settings.py -D app=dist/Sundial.app "Sundial" dist/Sundial.dmg
 
 dist/notarize:
 	./scripts/notarize.sh
 
 package:
 	rm -rf dist
-	mkdir -p dist/SunDail
+	mkdir -p dist/Sundial
 	for dir in $(PACKAGEABLES); do \
 		make --directory=$$dir package; \
-		cp -r $$dir/dist/$$dir dist/SunDail; \
+		cp -r $$dir/dist/$$dir dist/Sundial; \
 	done
 # Move aw-qt to the root of the dist folder
-	mv dist/SunDail/aw-qt aw-qt-tmp
-	mv aw-qt-tmp/* dist/SunDail
+	mv dist/Sundial/aw-qt aw-qt-tmp
+	mv aw-qt-tmp/* dist/Sundial
 	rmdir aw-qt-tmp
 # Remove problem-causing binaries
-	rm -f dist/SunDail/libdrm.so.2       # see: https://github.com/ActivityWatch/activitywatch/issues/161
-	rm -f dist/SunDail/libharfbuzz.so.0  # see: https://github.com/ActivityWatch/activitywatch/issues/660#issuecomment-959889230
+	rm -f dist/Sundial/libdrm.so.2       # see: https://github.com/ActivityWatch/activitywatch/issues/161
+	rm -f dist/Sundial/libharfbuzz.so.0  # see: https://github.com/ActivityWatch/activitywatch/issues/660#issuecomment-959889230
 # These should be provided by the distro itself
 # Had to be removed due to otherwise causing the error:
 #   aw-qt: symbol lookup error: /opt/activitywatch/libQt5XcbQpa.so.5: undefined symbol: FT_Get_Font_Format
-	rm -f dist/SunDail/libfontconfig.so.1
-	rm -f dist/SunDail/libfreetype.so.6
+	rm -f dist/Sundial/libfontconfig.so.1
+	rm -f dist/Sundial/libfreetype.so.6
 # Remove unnecessary files
-	rm -rf dist/SunDail/pytz
+	rm -rf dist/Sundial/pytz
 # Builds zips and setups
 	bash scripts/package/package-all.sh
 
