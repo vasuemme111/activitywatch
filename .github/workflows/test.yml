@@ -88,7 +88,7 @@ jobs:
       - name: Run and test old server
         run: |
           bin=dist/aw-old/${{ matrix.aw_server_old }}/${{ matrix.aw_server_old }}
-          url="http://localhost:5600"
+          url="http://localhost:7600"
 
           # Check version
           $bin --version || true  # due to bug in old aw-server
@@ -135,7 +135,7 @@ jobs:
       - name: Run and test new server
         run: |
           bin=dist/aw-new/${{ matrix.aw_server_new }}/${{ matrix.aw_server_new }}
-          url="http://localhost:5600"
+          url="http://localhost:7600"
 
           # Check version
           $bin --version

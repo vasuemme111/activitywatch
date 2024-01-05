@@ -76,6 +76,7 @@ elif platform.system() == "Darwin":
     dependent_datas = [
         ("libcrypto.3.dylib", '.'),
         ("libsqlcipher.0.dylib", '.'),
+        ("wkhtmltopdf",".")
     ]
 
 datas = [
