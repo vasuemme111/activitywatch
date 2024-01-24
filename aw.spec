@@ -57,20 +57,20 @@ aw_server_a = Analysis(
         (restx_path / "static", "flask_restx/static"),
         (aw_core_path / "schemas", "aw_core/schemas"),
     ],
-    hiddenimports=['reportlab',
-    'reportlab.graphics'
-    'reportlab.lib.utils'
-    'reportlab.rl_settings'
-    'reportlab.lib.units'
-    'reportlabl.pdfbase.pdfmetrics',
+    hiddenimports=[
+    'reportlab',
+    'reportlab.graphics',
+    'reportlab.lib.utils',
+    'reportlab.rl_settings',
+    'reportlab.lib.units',
+    'reportlab.pdfbase.pdfmetrics',
     'reportlab.graphics.barcode.common',
     'reportlab.graphics.barcode.code128',
     'reportlab.graphics.barcode.code93',
     'reportlab.graphics.barcode.code39',
-    'reportlab.graphics.barcode.code93',
     'reportlab.graphics.barcode.usps',
     'reportlab.graphics.barcode.usps4s',
-    'reportlab.graphics.barcode.ecc200datamatrix'
+    'reportlab.graphics.barcode.ecc200datamatrix',
     ],
     hookspath=[],
     runtime_hooks=[],

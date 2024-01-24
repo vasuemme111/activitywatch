@@ -47,7 +47,6 @@ Name: "StartMenuEntry" ; Description: "Start Sundial when Windows starts"; Group
 [Files]
 Source: "{#DistDir}\Sundial\aw-qt.exe"; DestDir: "{app}"; Flags: ignoreversion
 Source: "{#DistDir}\Sundial\*"; DestDir: "{app}"; Flags: ignoreversion recursesubdirs createallsubdirs
-Source: "../../wkhtmltopdf.exe"; DestDir: "{app}"; Flags: onlyifdoesntexist
 ; NOTE: Don't use "Flags: ignoreversion" on any shared system files
 
 [UninstallDelete]
