@@ -57,7 +57,21 @@ aw_server_a = Analysis(
         (restx_path / "static", "flask_restx/static"),
         (aw_core_path / "schemas", "aw_core/schemas"),
     ],
-    hiddenimports=[],
+    hiddenimports=['reportlab',
+    'reportlab.graphics'
+    'reportlab.lib.utils'
+    'reportlab.rl_settings'
+    'reportlab.lib.units'
+    'reportlabl.pdfbase.pdfmetrics',
+    'reportlab.graphics.barcode.common',
+    'reportlab.graphics.barcode.code128',
+    'reportlab.graphics.barcode.code93',
+    'reportlab.graphics.barcode.code39',
+    'reportlab.graphics.barcode.code93',
+    'reportlab.graphics.barcode.usps',
+    'reportlab.graphics.barcode.usps4s',
+    'reportlab.graphics.barcode.ecc200datamatrix'
+    ],
     hookspath=[],
     runtime_hooks=[],
     excludes=[],
@@ -76,7 +90,6 @@ elif platform.system() == "Darwin":
     dependent_datas = [
         ("libcrypto.3.dylib", '.'),
         ("libsqlcipher.0.dylib", '.'),
-        ("wkhtmltopdf",".")
     ]
 
 datas = [
