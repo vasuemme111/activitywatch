@@ -36,10 +36,10 @@ def main():
 
     parser = argparse.ArgumentParser(description="Generate changelog from git history")
 
-    parser.add_argument("--org", default="Sundial", help="GitHub organization")
-    parser.add_argument("--repo", default="Sundial", help="GitHub repository")
+    parser.add_argument("--org", default="TTim", help="GitHub organization")
+    parser.add_argument("--repo", default="TTim", help="GitHub repository")
     parser.add_argument(
-        "--project-title", default="Sundial", help="Project title"
+        "--project-title", default="TTim", help="Project title"
     )
 
     parser.add_argument(
@@ -55,7 +55,7 @@ def main():
 
     # preferred output order for submodules
     repo_order = [
-        "Sundial",
+        "TTim",
         "aw-server",
         "aw-server-rust",
         "aw-webui",
@@ -362,8 +362,8 @@ Thanks to everyone who contributed to this release:
     output += "\n\n"
 
     # hardcoded for now
-    if repo == "Sundial":
-        output += "**New to Sundial?** Check out the [website](https://activitywatch.net) and the [README](https://github.com/ActivityWatch/activitywatch/blob/master/README.md)."
+    if repo == "TTim":
+        output += "**New to TTim?** Check out the [website](https://activitywatch.net) and the [README](https://github.com/ActivityWatch/activitywatch/blob/master/README.md)."
         output += "\n\n"
         output += """# Installation
 
@@ -381,8 +381,8 @@ See the [getting started guide in the documentation](https://docs.activitywatch.
     output += output_contributors.strip() + "\n\n"
     output += output_changelog.strip() + "\n\n"
 
-    if repo == "Sundial":
-        output = output.replace("# Sundial", "# Sundial (bundle repo)")
+    if repo == "TTim":
+        output = output.replace("# TTim", "# TTim (bundle repo)")
     with open(output_path, "w") as f:
         f.write(output)
     print(f"Wrote {len(output.splitlines())} lines to {output_path}")

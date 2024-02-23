@@ -1,4 +1,4 @@
-Package: Sundial
+Package: TTim
 Architecture: amd64
 Maintainer: Erik Bjäreholt <erik@bjareho.lt>
 Depends:

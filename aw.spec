@@ -16,7 +16,7 @@ current_release = subprocess.run(
     stderr=subprocess.STDOUT,
     encoding="utf8",
 ).stdout.strip()
-print("bundling Sundial version " + current_release)
+print("bundling TTim version " + current_release)
 
 entitlements_file = Path(".") / "scripts" / "package" / "entitlements.plist"
 codesign_identity = os.environ.get("APPLE_PERSONALID", "").strip()
@@ -283,9 +283,9 @@ if platform.system() == "Darwin":
         aww_coll,
         awa_coll,
         aws_coll,
-        name="Sundial.app",
+        name="TTim.app",
         icon=icon,
-        bundle_identifier="net.ralvie.Sundial",
+        bundle_identifier="net.ralvie.TTim",
         version=current_release.lstrip("v"),
         info_plist={
             "NSPrincipalClass": "NSApplication",

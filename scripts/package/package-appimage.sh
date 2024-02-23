@@ -14,10 +14,10 @@ chmod +x appimagetool-x86_64.AppImage
 # create AppRun
 echo '#!/bin/sh
 DIR="$(dirname "$(readlink -f "${0}")")"
-"${DIR}"/aw-qt "$@"' > Sundial/AppRun
-chmod a+x ./Sundial/AppRun
+"${DIR}"/aw-qt "$@"' > TTim/AppRun
+chmod a+x ./TTim/AppRun
 
 # build appimage
-./linuxdeploy-x86_64.AppImage --appdir Sundial --executable ./Sundial/aw-qt --output appimage --desktop-file ./Sundial/aw-qt.desktop --icon-file ./Sundial/media/logo/logo.png --icon-filename Sundial
-APPIMAGE_FILE=`ls -1 | grep AppImage| grep -i Sundial`
-cp -v $APPIMAGE_FILE ./dist/Sundial-linux-x86_64.AppImage
+./linuxdeploy-x86_64.AppImage --appdir TTim --executable ./TTim/aw-qt --output appimage --desktop-file ./TTim/aw-qt.desktop --icon-file ./TTim/media/logo/logo.png --icon-filename TTim
+APPIMAGE_FILE=`ls -1 | grep AppImage| grep -i TTim`
+cp -v $APPIMAGE_FILE ./dist/TTim-linux-x86_64.AppImage
