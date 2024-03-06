@@ -17,7 +17,7 @@ AppPublisherURL={#MyAppURL}
 AppSupportURL="https://github.com/TTim/TTim/issues"
 AppUpdatesURL="https://github.com/TTim/TTim/releases"
 DefaultDirName={autopf32}\{#MyAppName} ; Installs in Program Files (x86)
-DisableDirPage=yes ; Hides directory selection page
+DisableDirPage=yes
 PrivilegesRequired=lowest
 PrivilegesRequiredOverridesAllowed=dialog
 OutputDir={#DistDir}
@@ -40,8 +40,8 @@ Source: "{#DistDir}\TTim\*"; DestDir: "{app}"; Flags: ignoreversion recursesubdi
 Type: filesandordirs; Name: "{localappdata}\TTim"
 
 [Icons]
-Name: "{commondesktop}\{#MyAppName}"; Filename: "{app}\{#MyAppExeName}"; Comment: "TTim" ; Desktop icon always created
-Name: "{userstartup}\{#MyAppName}"; Filename: "{app}\{#MyAppExeName}"; Comment: "TTim" ; Startup entry always created
+Name: "{commondesktop}\{#MyAppName}"; Filename: "{app}\{#MyAppExeName}"; Comment: "TTim"
+Name: "{userstartup}\{#MyAppName}"; Filename: "{app}\{#MyAppExeName}"; Comment: "TTim"
 
 [Run]
 Filename: "{app}\{#MyAppExeName}"; Description: "{cm:LaunchProgram,{#StringChange(MyAppName, '&', '&&')}}"; Flags: nowait postinstall skipifsilent
