@@ -137,6 +137,6 @@ jobs:
         uses: softprops/action-gh-release@v1
         with:
           draft: true
-          files: dist/*/activitywatch-*.*
+          files: dist/*/TTim-*.*
           body_path: dist/release_notes/release_notes.md
           prerelease: ${{ !(steps.version.outputs.is_stable == 'true') }}  # must compare to true, since boolean outputs are actually just strings, and "false" is truthy since it's not empty: https://github.com/actions/runner/issues/1483#issuecomment-994986996
