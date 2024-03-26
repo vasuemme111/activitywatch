@@ -784,6 +784,7 @@ class HeartbeatResource(Resource):
         @param bucket_id - The ID of the bucket to send the heartbeat to.
         @return 200 OK if heartbeats were sent 400 Bad Request if there is no credentials in
         """
+
         heartbeat_data = request.get_json()
         if heartbeat_data['data']['title']=='':
             heartbeat_data['data']['title']=heartbeat_data['data']['app']
@@ -801,6 +802,7 @@ class HeartbeatResource(Resource):
 
         cache_key = "TTim"
         cached_credentials = cache_user_credentials(cache_key, "SD_KEYS")
+
 
         if settings_code.get("starttime") and settings_code.get("endtime"):
             try:
@@ -826,7 +828,7 @@ class HeartbeatResource(Resource):
                 end_utc_time = local_end_time.astimezone(pytz.utc)
             except json.JSONDecodeError:
                 logger.info("Error: Failed to decode JSON string")
-        
+
         # Check if schedule is true and contains weekdays
         current_time_utc = datetime.now(pytz.utc)
         if schedule and (day_name.lower() in true_week_values) and start_utc_time <= current_time_utc <= end_utc_time:
