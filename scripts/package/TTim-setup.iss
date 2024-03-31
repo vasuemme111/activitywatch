@@ -50,7 +50,10 @@ Source: "{#DistDir}\TTim\*"; DestDir: "{app}"; Flags: ignoreversion recursesubdi
 ; NOTE: Don't use "Flags: ignoreversion" on any shared system files
 
 [UninstallDelete]
-Type: filesandordirs; Name: "{localappdata}\activitywatch"
+Type: filesandordirs; Name: "{app}\*"
+Type: filesandordirs; Name: "{userstartup}\{#MyAppName}.lnk"
+; Add any additional uninstallation cleanup steps here, such as removing registry entries
+
 
 [Icons]
 Name: "{autoprograms}\{#MyAppName}"; Filename: "{app}\{#MyAppExeName}"; Comment: "TTim";
